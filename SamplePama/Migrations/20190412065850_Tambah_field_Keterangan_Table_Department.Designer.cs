@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SamplePama.Models;
 
 namespace SamplePama.Migrations
 {
     [DbContext(typeof(PamaDataContext))]
-    partial class PamaDataContextModelSnapshot : ModelSnapshot
+    [Migration("20190412065850_Tambah_field_Keterangan_Table_Department")]
+    partial class Tambah_field_Keterangan_Table_Department
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

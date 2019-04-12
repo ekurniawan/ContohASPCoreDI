@@ -9,5 +9,6 @@ namespace SamplePama.Models
     {
         public int DepartmentID { get; set; }
         public string NamaDept { get; set; }
+        public string Keterangan { get; set; }
     }
 }
