@@ -14,11 +14,14 @@ namespace SamplePama.Controllers
     {
         private IPegawai _pegawai;
         private IConfiguration _config;
+        private IBoss _boss;
 
-        public HomeController(IPegawai pegawai,IConfiguration config)
+        public HomeController(IPegawai pegawai,IConfiguration config,
+            IBoss boss)
         {
             _pegawai = pegawai;
             _config = config;
+            _boss = boss;
         }
         public IActionResult Index()
         {
@@ -27,6 +30,7 @@ namespace SamplePama.Controllers
 
         public IActionResult Pegawai()
         {
+            ViewData["boss"] = _boss.GetAll();
             var model = _pegawai.GetAll();
             return View(model);
         }

@@ -34,6 +34,7 @@ namespace SamplePama
 
             //services DAL
             services.AddScoped<IPegawai, PegawaiDAL>();
+            services.AddScoped<IBoss, BossDAL>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

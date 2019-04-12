@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SamplePama.Models.Pegawai>
 
+
 @{
     ViewData["Title"] = "Pegawai";
 }
@@ -9,6 +10,15 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<ul>
+    @foreach (var data in (List<Boss>)ViewData["boss"])
+    {
+        <li>@data.Nama</li>
+    }
+</ul>
+
+
 <table class="table">
     <thead>
         <tr>
