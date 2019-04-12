@@ -6,15 +6,19 @@ using Microsoft.Extensions.Configuration;
 using SamplePama.Models;
 using System.Data.SqlClient;
 using Dapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace SamplePama.DAL
 {
     public class PegawaiDAL : IPegawai
     {
         private IConfiguration _config;
-        public PegawaiDAL(IConfiguration config)
+        private PamaDataContext _db;
+
+        public PegawaiDAL(IConfiguration config,PamaDataContext db)
         {
             _config = config;
+            _db = db;
         }
 
         private string GetConn()
@@ -29,12 +33,17 @@ namespace SamplePama.DAL
 
         public IEnumerable<Pegawai> GetAll()
         {
-            using(SqlConnection conn = new SqlConnection(GetConn()))
+            /*using(SqlConnection conn = new SqlConnection(GetConn()))
             {
                 var strSql = @"select * from Pegawai
                                order by FirstName";
                 return conn.Query<Pegawai>(strSql);   
-            }
+            }*/
+
+            var data = from p in _db.Pegawai.Include(p=>p.Department)
+                       select p;
+
+            return data;
         }
 
         public Pegawai GetById(string id)

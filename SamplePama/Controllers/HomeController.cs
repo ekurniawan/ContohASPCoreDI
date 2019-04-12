@@ -30,9 +30,9 @@ namespace SamplePama.Controllers
 
         public IActionResult Pegawai()
         {
-            ViewData["boss"] = _boss.GetAll();
+            //ViewData["boss"] = _boss.GetAll();
             var model = _pegawai.GetAll();
-            return View(model);
+            return new JsonResult(model);
         }
 
         public IActionResult About()

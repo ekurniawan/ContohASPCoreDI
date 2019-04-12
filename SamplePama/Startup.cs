@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SamplePama.DAL;
+using SamplePama.Models;
 
 namespace SamplePama
 {
@@ -32,6 +34,10 @@ namespace SamplePama
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<PamaDataContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("DefaultConnection")));
+           
             //services DAL
             services.AddScoped<IPegawai, PegawaiDAL>();
             services.AddScoped<IBoss, BossDAL>();
