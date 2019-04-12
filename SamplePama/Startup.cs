@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SamplePama.DAL;
 
 namespace SamplePama
 {
@@ -31,6 +32,8 @@ namespace SamplePama
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services DAL
+            services.AddScoped<IPegawai, PegawaiDAL>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
